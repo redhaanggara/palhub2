@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-$conn = new mysqli("localhost", "root", "", "jokedb");
+$conn = new mysqli("be826d4ad86399", "be826d4ad86399", "8670b078", "dbpalhub");
 $result = $conn->query("SELECT * FROM markers order by name");
 
 $outp = "";
