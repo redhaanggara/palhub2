@@ -51,7 +51,6 @@ while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
 
     $outp .= '"dp":"'                       . $rs["dp"]                       . '"}';
 }
-echo json_encode({"records":['.$outp.']});
 $outp ='{"records":['.$outp.']}';
 echo ($outp);
 exit();
