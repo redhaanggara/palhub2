@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-$conn = new mysqli("localhost", "root", "", "jokedb");
+$conn = new mysqli("us-cdbr-azure-west-b.cleardb.com", "us-cdbr-azure-west-b.cleardb.com", "8670b078", "dbpalhub");
 $result = $conn->query("SELECT * from user where user = '$usernow' ");
 
 $outp = "";
