@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-$conn = new mysqli("us-cdbr-azure-west-b.cleardb.com", "be826d4ad86399", "8670b078", "jokedb");
+$conn = new mysqli("us-cdbr-azure-west-b.cleardb.com", "be826d4ad86399", "8670b078", "dbpalhub");
 $result = $conn->query("SELECT A.id,A.tanggal,A.photo1,A.deskripsi,A.pengirim,A.location,A.like,B.dp from timelines A ,users B where A.pengirim =B.email ORDER BY A.id DESC");
 
 $outp = "";
