@@ -23,10 +23,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
 $postData = file_get_contents('php://input');
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "jokedb";
+$servername = "us-cdbr-azure-west-b.cleardb.com";
+$username = "be826d4ad86399";
+$password = "8670b078";
+$dbname = "dbpalhub";
 
 // Create connection
 $link = mysql_connect($servername, $username, $password);
