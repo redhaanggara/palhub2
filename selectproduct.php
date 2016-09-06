@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 
 
-$link = new mysqli("localhost", "root", "", "jokedb");
+$link = new mysqli("us-cdbr-azure-west-b.cleardb.com", "be826d4ad86399", "8670b078", "dbpalhub");
 
 $postdata = file_get_contents('php://input');
 $request = json_decode($postdata);
