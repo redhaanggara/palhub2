@@ -19,7 +19,7 @@
     }
  
 //Isi sesuai database
-$mysqli=new mysqli("localhost","root","", "jokedb");
+$mysqli=new mysqli("us-cdbr-azure-west-b.cleardb.com","be826d4ad86399","8670b078", "dbpalhub");
  
 
  $postdata = file_get_contents("php://input");
