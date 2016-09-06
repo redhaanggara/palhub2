@@ -22,10 +22,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
 
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "jokedb";
+$servername = "us-cdbr-azure-west-b.cleardb.com";
+$username = "be826d4ad86399t";
+$password = "8670b078";
+$dbname = "dbpalhub";
 
 // Create connection
 $link = mysql_connect($servername, $username, $password);
