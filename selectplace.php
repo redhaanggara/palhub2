@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-$conn = new mysqli("be826d4ad86399", "be826d4ad86399", "8670b078", "dbpalhub");
+$conn = new mysqli("us-cdbr-azure-west-b.cleardb.com", "be826d4ad86399", "8670b078", "dbpalhub");
 $result = $conn->query("SELECT * FROM markers order by name");
 
 $outp = "";
@@ -43,5 +43,4 @@ while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
 }
 $outp ='{"records":['.$outp.']}';
 echo($outp);
-$conn->close();
 ?>
