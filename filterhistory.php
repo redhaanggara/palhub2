@@ -32,5 +32,5 @@ $outp = array();
 while($row = mysql_fetch_row($result)) {
    $outp[] = $row;
 }
-echo json_encode($temp);
+echo json_encode($outp);
 ?>
