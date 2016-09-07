@@ -52,7 +52,6 @@ while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
     $outp .= '"dp":"'                       . $rs["dp"]                       . '"}';
 }
 $outp ='{"records":['.$outp.']}';
-$link->close();
 echo($outp);
 echo "kampang";
 ?>
