@@ -19,39 +19,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 
 
-$link = new mysqli("us-cdbr-azure-west-b.cleardb.com", "be826d4ad86399", "8670b078", "dbpalhub");
-
+mysql_connect("us-cdbr-azure-west-b.cleardb.com","be826d4ad86399", "8670b078") or die('Could not connect');
+mysql_select_db("dbpalhub");
 $postdata = file_get_contents('php://input');
 $request = json_decode($postdata);
 $uname = mysql_real_escape_string($request->uname);
 
-$result = $link->query("SELECT A.id,A.tanggal,A.photo1,A.deskripsi,A.pengirim,A.location,A.lat,A.lng,A.like,B.dp from timelines A ,users B where A.pengirim ='$uname'  AND B.email = '$uname' ORDER BY A.id DESC");
+$sql= "SELECT A.id,A.tanggal,A.photo1,A.deskripsi,A.pengirim,A.location,A.lat,A.lng,A.like,B.dp from timelines A ,users B where A.pengirim ='$uname'  AND B.email = '$uname' ORDER BY A.id DESC";
+$result = mysql_query($sql);
+$outp = array();
 
-
-$outp = "";
-while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
-    if ($outp != "") {$outp .= ",";}
-    $outp .= '{"id":"'                       . $rs["id"]                        . '",';
-
-    $outp .= '"tanggal":"'                       . $rs["tanggal"]                        . '",';
-
-    $outp .= '"photo1":"'                       . $rs["photo1"]                       . '",';
-
-    $outp .= '"deskripsi":"'                       . $rs["deskripsi"]                       . '",';
-
-    $outp .= '"pengirim":"'                       . $rs["pengirim"]                       . '",';
-
-    $outp .= '"location":"'                       . $rs["location"]                       . '",';
-
-    $outp .= '"lat":"'                       . $rs["lat"]                       . '",';
-
-    $outp .= '"lng":"'                       . $rs["lng"]                       . '",';
-
-    $outp .= '"like":"'                       . $rs["like"]                       . '",';
-
-    $outp .= '"dp":"'                       . $rs["dp"]                       . '"}';
+while($row = mysql_fetch_row($result)) {
+   $outp[] = $row;
 }
-$outp ='{"records":['.$outp.']}';
-echo ($outp);
-exit();
+echo json_encode($temp);
 ?>
