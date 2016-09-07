@@ -53,5 +53,4 @@ while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
 }
 $outp ='{"records":['.$outp.']}';
 echo($outp);
-$link->close();
 ?>
