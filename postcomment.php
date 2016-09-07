@@ -46,6 +46,5 @@ $sql = "INSERT INTO comment (id,comment,pengirim) VALUES
         ($id,'$message','$uname')";
           
 mysql_query($sql);
-mysql_close($link);
 ?>
 
