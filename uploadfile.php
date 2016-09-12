@@ -34,7 +34,7 @@ if(!empty($_FILES)){
 //file1
 $targetfile1 = $_FILES['file1']['tmp_name'];
 $namafile1 = $_FILES['file1']['name'];
-$uploadPath1= "timeline/$namafile1";
+$uploadPath1= "xyz/$namafile1";
 //-file
 $sql = "INSERT INTO timelines (photo1,deskripsi,pengirim,location,lat,lng) VALUES
         ('$namafile1','$deskripsi','$uname','$lokasi','$x','$y')";
