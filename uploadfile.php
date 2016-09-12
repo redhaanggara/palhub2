@@ -36,20 +36,13 @@ $uname = $_POST['uname'];
 $lokasi = $_POST['lokasi'];
 $x=$_POST['lat'];
 $y=$_POST['lng'];
-print_r($_FILES);
-
-if(!empty($_FILES)){
-  $targetfile1 = $_FILES['file']['tmp_name'];
-  $namafile1 = $_FILES['file']['name'];
-  $uploadPath1= "xyz/$namafile1";
+$namefile ="cecak";
   $sql = "INSERT INTO timelines (photo1,deskripsi,pengirim,location,lat,lng) VALUES
-        ('$namafile1','$deskripsi','$uname','$lokasi','$x','$y')";
+        ('$namafile','$deskripsi','$uname','$lokasi','$x','$y')";
         if (mysql_query($sql)){
-                move_uploaded_file($targetfile1,"$uploadPath1");
                 echo json_encode(true);
                 echo "ja";
           }
-
         else{
                   echo json_encode(false);
                   echo "fail";
