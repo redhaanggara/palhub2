@@ -27,7 +27,7 @@ if ($result){
 }
 else{
       echo json_encode(false);
-      echo "ja";
+      echo "jar";
 }}
 else{
       echo json_encode(false);
