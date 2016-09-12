@@ -17,9 +17,8 @@ $targetfile1 = $_FILES['file']['tmp_name'];
 $namafile1 = $_FILES['file']['name'];
 $uploadPath1= "xyz/$namafile1";
 //-file
-$sql = "INSERT INTO timelines (photo1,deskripsi,pengirim,location,lat,lng) VALUES
-        ('$namafile1','$deskripsi','$uname','$lokasi','$x','$y')";
-$result = mysql_query($sql);
+$result = $link->query("INSERT INTO timelines (photo1,deskripsi,pengirim,location,lat,lng) VALUES
+        ('$namafile1','$deskripsi','$uname','$lokasi','$x','$y')");
 if ($result){
         move_uploaded_file($targetfile1,"$uploadPath1");
         echo json_encode(true);
