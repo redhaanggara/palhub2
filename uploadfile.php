@@ -46,9 +46,5 @@ $namefile ="cecak";
         else{
                   echo json_encode(false);
                   echo "fail";
-        }}
-else{
-  echo json_encode(false);
-  echo "empty";
-}
+        }
 ?>
