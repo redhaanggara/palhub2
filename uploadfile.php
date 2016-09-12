@@ -52,10 +52,10 @@ if(!empty($_FILES)){
 
         else{
                   echo json_encode(false);
-                  echo "ja";
+                  echo "fail";
         }}
 else{
   echo json_encode(false);
-  echo "ja";
+  echo "empty";
 }
 ?>
