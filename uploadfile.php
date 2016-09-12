@@ -27,10 +27,10 @@ if ($result){
 }
 else{
       echo json_encode(false);
-      echo "jar";
+      echo "error";
 }}
 else{
       echo json_encode(false);
-      echo "ja";
+      echo "kosong";
 }
 ?>
