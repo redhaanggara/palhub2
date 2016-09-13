@@ -22,7 +22,7 @@ $mysqli = new mysqli('us-cdbr-azure-west-b.cleardb.com','be826d4ad86399','8670b0
 $postdata = file_get_contents("php://input");
 if (isset($postdata)) {
            $request = json_decode($postdata);
-           $caption = $request->deskripsi;
+           $caption = $request->desc;
            $sql = "INSERT INTO timelines (photo1,deskripsi,pengirim,location) VALUES ('null','$caption','null','null')";
            mysqli_query($mysqli,$sql);
 }
