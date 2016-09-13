@@ -33,7 +33,7 @@ $postdata = file_get_contents("php://input");
 if (isset($postdata)) {
    $request = json_decode($postdata);
    $caption = $request->deskripsi;
-   $sql = "INSERT INTO timelines (deskripsi) VALUES ('$caption')";
+   $sql = "INSERT INTO timelines (photo1,deskripsi,pengirim,location,lat,lng,like) VALUES ('null',$caption','null','null',0.02,0.02,0)";
    $result= mysqli_query($conn,$sql);
         if ($result){
                 echo json_encode(true);
@@ -42,7 +42,8 @@ if (isset($postdata)) {
         else{
                   echo json_encode(false);
                   echo "failed";
-        }}
+        }
+}
 else{
         echo json_encode(false);
                   echo "empty";
