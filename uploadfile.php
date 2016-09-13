@@ -17,16 +17,11 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
         exit(0);
     }
     
-$servername = "us-cdbr-azure-west-b.cleardb.com";
-$username = "be826d4ad86399";
-$password = "8670b078";
-$dbname = "dbpalhub";
-
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$mysqli = new mysqli"us-cdbr-azure-west-b.cleardb.com","be826d4ad86399", "8670b078","dbpalhub");
 // Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error());
+if ($mysqli->connect_error) {
+    die("Connection failed: " . $mysqli->connect_error());
 }
 
 $postdata = file_get_contents("php://input");
@@ -34,10 +29,9 @@ if (isset($postdata)) {
    $request = json_decode($postdata);
    $caption = $request->deskripsi;
    $sql = "INSERT INTO timelines (photo1,deskripsi,pengirim,location,lat,lng,like) VALUES ('null',$caption','null','null',0.02,0.02,0)";
-   $result= mysqli_query($conn,$sql);
+   $result= mysqli_query($mysqli,$sql);
         if ($result){
                 echo json_encode(true);
-                echo "ja";
           }
         else{
                   echo json_encode(false);
