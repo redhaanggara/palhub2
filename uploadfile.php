@@ -41,8 +41,8 @@ $postdata = file_get_contents("php://input");
 if (isset($postdata)) {
    $request = json_decode($postdata);
    $caption = $request->deskripsi;
-   $sql = "INSERT INTO timelines (deskripsi') VALUES ('$caption')";
-        if ($conn->query($sql) == TRUE){
+   $sql = "INSERT INTO timelines (deskripsi) VALUES ('$caption')";
+        if (mysqli_query($conn,$sql);){
                 echo json_encode(true);
                 echo "ja";
           }
