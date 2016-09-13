@@ -41,14 +41,14 @@ $postdata = file_get_contents("php://input");
 if (isset($postdata)) {
    $request = json_decode($postdata);
    $caption = $request->deskripsi;
-   $sql = "INSERT INTO timelines (deskripsi') VALUES ($caption')";
+   $sql = "INSERT INTO timelines (deskripsi') VALUES ('$caption')";
         if ($conn->query($sql) == TRUE){
                 echo json_encode(true);
                 echo "ja";
           }
         else{
                   echo json_encode(false);
-                  echo "fail";
+                  echo "failed";
         }}
 else{
         echo json_encode(false);
