@@ -24,7 +24,7 @@ $postdata = file_get_contents("php://input");
 if (isset($postdata)) {
    $request = json_decode($postdata);
    $caption = $request->deskripsi;
-   $sql = "INSERT INTO timelines (photo1,deskripsi,pengirim,location,lat,lng,like) VALUES ('null','$caption','null','null',002,002,0)";
+   $sql = "INSERT INTO timelines (photo1,deskripsi,pengirim,location) VALUES ('null','$caption','null','null')";
    mysqli_query($mysqli,$sql);
 }
 else{
