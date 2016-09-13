@@ -1,4 +1,12 @@
 <?php
+
+/*$deskripsi = $_POST['deskripsi'];
+$uname = $_POST['uname'];
+$lokasi = $_POST['lokasi'];
+$x=$_POST['lat'];
+$y=$_POST['lng'];
+$namefile ="cecak";*/
+
 if (isset($_SERVER['HTTP_ORIGIN'])) {
         header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
         header('Access-Control-Allow-Credentials: true');
@@ -29,15 +37,11 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error());
 }
 
-$deskripsi = $_POST['deskripsi'];
-$uname = $_POST['uname'];
-$lokasi = $_POST['lokasi'];
-$x=$_POST['lat'];
-$y=$_POST['lng'];
-$namefile ="cecak";
-
-  $sql = "INSERT INTO timelines (photo1,deskripsi,pengirim,location,lat,lng) VALUES
-        ('$namafile','$deskripsi','$uname','$lokasi','$x','$y')";
+$postdata = file_get_contents("php://input");
+if (isset($postdata)) {
+   $request = json_decode($postdata);
+   $caption = $request->deskripsi;
+   $sql = "INSERT INTO timelines (deskripsi') VALUES ($caption')";
         if ($conn->query($sql) == TRUE){
                 echo json_encode(true);
                 echo "ja";
@@ -45,5 +49,9 @@ $namefile ="cecak";
         else{
                   echo json_encode(false);
                   echo "fail";
-        }
+        }}
+else{
+        echo json_encode(false);
+                  echo "empty";
+}
 ?>
