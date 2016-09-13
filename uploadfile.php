@@ -1,36 +1,80 @@
 <?php
 
+
 if (isset($_SERVER['HTTP_ORIGIN'])) {
-        header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
-        header('Access-Control-Allow-Credentials: true');
-        header('Access-Control-Max-Age: 86400');    // cache for 1 day
-    }
- 
-    // Access-Control headers are received during OPTIONS requests
-    if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
- 
-        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
-            header("Access-Control-Allow-Methods: GET, POST, OPTIONS");         
- 
-        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
-            header("Access-Control-Allow-Headers:        {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
- 
-        exit(0);
-    }
-    
+    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+    header('Access-Control-Allow-Credentials: true');
+    header('Access-Control-Max-Age: 86400');    // cache for 1 day
+}
+
+// Access-Control headers are received during OPTIONS requests
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+
+    if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
+        header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+
+    if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
+        header("Access-Control-Allow-Headers:        {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+
+    exit(0);
+}
+
+
+
+$postData = file_get_contents('php://input');
+
+$servername = "us-cdbr-azure-west-b.cleardb.com";
+$username = "be826d4ad86399";
+$password = "8670b078";
+$dbname = "dbpalhub";
+
 // Create connection
-$mysqli = new mysqli('us-cdbr-azure-west-b.cleardb.com','be826d4ad86399','8670b078','dbpalhub');
-$postdata = file_get_contents("php://input");
-$request = json_decode($postdata);
-$caption = $request->deskripsi;
-if (isset($caption)) {
-   $sql = "INSERT INTO uyu (yow) VALUES ($caption')";
-   mysqli_query($mysqli,$sql);
-   echo json_encode(true);
-   echo "ya";
+$link = mysql_connect($servername, $username, $password);
+// Check connection
+if (!$link) {
+    die("Connection failed: " . mysql_connect_error());
 }
+
+mysql_select_db($dbname, $link);
+$deskripsi = $_POST['deskripsi'];
+$uname = $_POST['uname'];
+$lokasi = $_POST['lokasi'];
+$x=$_POST['lat'];
+$y=$_POST['lng'];
+print_r($_FILES);
+
+if(!empty($_FILES)){
+
+  //file1
+  $targetfile = $_FILES['file']['tmp_name'];
+  $namafile = $_FILES['file']['name'];
+  $uploadPath= "timeline/$namafile";
+
+
+  $sql = "INSERT INTO timelines (photo1,deskripsi,pengirim,location,lat,lng) VALUES
+        ('$namafile','$deskripsi','$uname','$lokasi','$x','$y')";
+        
+if (mysql_query($sql))
+{
+move_uploaded_file($targetfile,"$uploadPath");
+
+echo json_encode(true);
+echo "ja";
+mysql_close($link);
+}
+
 else{
-        echo json_encode(false);
-        echo "empty";
+  echo json_encode(false);
+  echo "ja";
 }
+}
+
+else{
+  echo json_encode(false);
+  echo "ja";
+}
+
+
 ?>
+
+
