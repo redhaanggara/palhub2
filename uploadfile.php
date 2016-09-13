@@ -21,9 +21,9 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
 // Create connection
 $mysqli = new mysqli('us-cdbr-azure-west-b.cleardb.com','be826d4ad86399','8670b078','dbpalhub');
 $postdata = file_get_contents("php://input");
-if (isset($postdata)) {
-   $request = json_decode($postdata);
-   $caption = $request->desc;
+$request = json_decode($postdata);
+$caption = $request->desc;
+if (isset($caption)) {
    $sql = "INSERT INTO timelines (id,tanggal,photo1,deskripsi,pengirim,location,lat,lng,like) VALUES (null,null,'null','$caption','null','null',0,0,0)";
    mysqli_query($mysqli,$sql);
    echo json_encode(true);
