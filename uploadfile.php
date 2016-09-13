@@ -1,12 +1,4 @@
 <?php
-
-/*$deskripsi = $_POST['deskripsi'];
-$uname = $_POST['uname'];
-$lokasi = $_POST['lokasi'];
-$x=$_POST['lat'];
-$y=$_POST['lng'];
-$namefile ="cecak";*/
-
 if (isset($_SERVER['HTTP_ORIGIN'])) {
         header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
         header('Access-Control-Allow-Credentials: true');
@@ -42,7 +34,8 @@ if (isset($postdata)) {
    $request = json_decode($postdata);
    $caption = $request->deskripsi;
    $sql = "INSERT INTO timelines (deskripsi) VALUES ('$caption')";
-        if (mysqli_query($conn,$sql);){
+   $result= mysqli_query($conn,$sql);
+        if ($result){
                 echo json_encode(true);
                 echo "ja";
           }
