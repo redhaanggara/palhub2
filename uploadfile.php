@@ -27,6 +27,7 @@ if (isset($caption)) {
    $sql = "INSERT INTO timelines (id,tanggal,photo1,deskripsi,pengirim,location,lat,lng,like) VALUES (null,null,'null','$caption','null','null',0,0,0)";
    mysqli_query($mysqli,$sql);
    echo json_encode(true);
+   echo "ya";
 }
 else{
         echo json_encode(false);
