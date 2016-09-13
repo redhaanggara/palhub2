@@ -19,10 +19,6 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
     
 // Create connection
 $mysqli = new mysqli"us-cdbr-azure-west-b.cleardb.com","be826d4ad86399", "8670b078","dbpalhub");
-// Check connection
-if ($mysqli->connect_error) {
-    die("Connection failed: " . $mysqli->connect_error());
-}
 
 $postdata = file_get_contents("php://input");
 if (isset($postdata)) {
