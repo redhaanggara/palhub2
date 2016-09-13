@@ -18,17 +18,16 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
     }
     
 // Create connection
-$mysqli = new mysqli("us-cdbr-azure-west-b.cleardb.com","be826d4ad86399", "8670b078","dbpalhub");
-
+$mysqli = new mysqli('us-cdbr-azure-west-b.cleardb.com','be826d4ad86399','8670b078','dbpalhub');
 $postdata = file_get_contents("php://input");
 if (isset($postdata)) {
-   $request = json_decode($postdata);
-   $caption = $request->deskripsi;
-   $sql = "INSERT INTO timelines (photo1,deskripsi,pengirim,location) VALUES ('null','$caption','null','null')";
-   mysqli_query($mysqli,$sql);
+           $request = json_decode($postdata);
+           $caption = $request->deskripsi;
+           $sql = "INSERT INTO timelines (photo1,deskripsi,pengirim,location) VALUES ('null','$caption','null','null')";
+           mysqli_query($mysqli,$sql);
 }
 else{
         echo json_encode(false);
-                  echo "empty";
+        echo "empty";
 }
 ?>
