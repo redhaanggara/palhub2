@@ -29,7 +29,8 @@ if (isset($postdata)) {
    $request = json_decode($postdata);
    $caption = $request->deskripsi;
    $sql = "INSERT INTO timelines (photo1,deskripsi,pengirim,location,lat,lng,like) VALUES ('null',$caption','null','null',0.02,0.02,0)";
-        if (   $mysqli_query($mysqli,$sql)){
+   $result = mysqli_query($mysqli,$sql); 
+        if ($result){
                 echo json_encode(true);
           }
         else{
