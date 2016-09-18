@@ -38,7 +38,7 @@ $namafile = basename( $_FILES["file"]["name"]);
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
   if(mysql_query("INSERT INTO timelines(photo1,deskripsi,pengirim,location,lat,lng) VALUES
         ('$namafile','$deskripsi','$uname','$lokasi','$x','$y'")){
-            if(move_uploaded_file($_FILES["file"]["tmp_name"], $target_file){
+            if(move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)){
             echo json_encode(true);
             echo "perfect";
         }
