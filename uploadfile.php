@@ -24,10 +24,7 @@ mysql_connect($server,$username,$password) or die("Koneksi gagal");
 mysql_select_db($database) or die("Database tidak bisa dibuka");
 
 $postdata = file_get_contents('php://input');
-if ($postdata == ""){
-    echo "postkosong";
-}
-else {
+if (isset($postdata)){
     echo "masuke";
     $request = json_decode($postdata);
     $deskripsi = $request->deskripsi;
@@ -54,5 +51,9 @@ else {
       echo json_encode(false);
       echo "gagalinsert";
  }
+}
+else {
+    echo "postkosong";
+
 }
 ?>
