@@ -1,12 +1,9 @@
 <?php
-
-
 if (isset($_SERVER['HTTP_ORIGIN'])) {
     header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
     header('Access-Control-Allow-Credentials: true');
     header('Access-Control-Max-Age: 86400');    // cache for 1 day
 }
-
 // Access-Control headers are received during OPTIONS requests
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
@@ -18,12 +15,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
     exit(0);
 }
-
 $servername = "us-cdbr-azure-west-b.cleardb.com";
 $username = "be826d4ad86399";
 $password = "8670b078";
 $database = "dbpalhub";
-
 // Koneksi dan memilih database di server
 mysql_connect($servername,$username,$password) or die("Koneksi gagal");
 mysql_select_db($database) or die("Database tidak bisa dibuka");
@@ -61,5 +56,3 @@ else{
      echo "postkosong";
 }
 ?>
-
-
