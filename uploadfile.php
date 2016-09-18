@@ -52,5 +52,5 @@ else {
           echo "gagalinsert";
      }
 }
-
+exit();
 ?>
