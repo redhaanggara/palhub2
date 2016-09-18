@@ -20,10 +20,19 @@ $username = "be826d4ad86399";
 $password = "8670b078";
 $database = "dbpalhub";
 // Koneksi dan memilih database di server
-mysql_connect($servername,$username,$password) or die("Koneksi gagal");
-mysql_select_db($database) or die("Database tidak bisa dibuka");
+if(mysql_connect($servername,$username,$password)){
+    echo "Koneksi Baik";
+    if(mysql_select_db($database)){
+        echo "database baik";
+    }
+    else{
+        echo "database gagal";
+    }
+}
+else{
+    echo "koneksi gagal";
+}
 $postData = file_get_contents('php://input');
-
 if (isset($postdata)){
 $request = json_decode($postdata);
 $deskripsi = $request->deskripsi;
