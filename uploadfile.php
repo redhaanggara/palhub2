@@ -23,7 +23,7 @@ $database = "dbpalhub";
 mysql_connect($server,$username,$password) or die("Koneksi gagal");
 mysql_select_db($database) or die("Database tidak bisa dibuka");
 
-$postData = file_get_contents('php://input');
+$postdata = file_get_contents('php://input');
 if (isset($postdata)){
 echo "masuk";
 $request = json_decode($postdata);
@@ -52,7 +52,7 @@ $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
       echo "gagalinsert";
  }
 }
-else{
+else {
      echo "postkosong";
 }
 ?>
