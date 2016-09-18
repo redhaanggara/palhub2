@@ -21,6 +21,7 @@ mysql_connect($server,$username,$password) or die("Koneksi gagal");
 mysql_select_db($database) or die("Database tidak bisa dibuka");
 $postdata = file_get_contents('php://input');
 if ($postdata == ""){
+    echo json_encode(false);
     echo "postkosong";
 }
 else {
