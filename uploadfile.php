@@ -25,7 +25,6 @@ if ($postdata == ""){
     echo "postkosong";
 }
 else {
-    echo "masuke";
     $request = json_decode($postdata);
     $deskripsi = $request->deskripsi;
     $uname = $request->uname;
