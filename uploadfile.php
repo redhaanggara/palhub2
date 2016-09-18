@@ -19,62 +19,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     exit(0);
 }
 
-
-
-$postData = file_get_contents('php://input');
-
 $servername = "us-cdbr-azure-west-b.cleardb.com";
 $username = "be826d4ad86399";
 $password = "8670b078";
-$dbname = "dbpalhub";
+$database = "dbpalhub";
 
-// Create connection
-$link = mysql_connect($servername, $username, $password);
-// Check connection
-if (!$link) {
-    die("Connection failed: " . mysql_connect_error());
+// Koneksi dan memilih database di server
+mysql_connect($servername,$username,$password) or die("Koneksi gagal");
+mysql_select_db($database) or die("Database tidak bisa dibuka");
+$postData = file_get_contents('php://input');
+
+if (isset($postdata)){
+$request = json_decode($postdata);
+$deskripsi = $request->deskripsi;
+$uname = $request->uname;
+$lokasi = $request->lokasi;
+$x= $request->lat;
+$y= $request->lng;
+$target_dir = "xyz/";
+$target_file = $target_dir . basename($_FILES["file"]["name"]);
+$namafile = basename( $_FILES["file"]["name"]);
+$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+  if(mysql_query("INSERT INTO timelines(photo1,deskripsi,pengirim,location,lat,lng) VALUES
+        ('$namafile','$deskripsi','$uname','$lokasi','$x','$y'")){
+            if(move_uploaded_file($_FILES["file"]["tmp_name"], $target_file){
+            echo json_encode(true);
+            echo "perfect";
+        }
+            else{
+                echo json_encode(false);
+                echo "gagalmovefile";
+            }
+        }
+ else{
+      echo json_encode(false);
+      echo "gagalinsert";
+ }
 }
-
-mysql_select_db($dbname, $link);
-$deskripsi = $_POST['deskripsi'];
-$uname = $_POST['uname'];
-$lokasi = $_POST['lokasi'];
-$x=$_POST['lat'];
-$y=$_POST['lng'];
-print_r($_FILES);
-
-if(!empty($_FILES)){
-
-  //file1
-  $targetfile = $_FILES['file']['tmp_name'];
-  $namafile = $_FILES['file']['name'];
-  $uploadPath= "xyz/$namafile";
-
-
-  $sql = "INSERT INTO timelines (photo1,deskripsi,pengirim,location,lat,lng) VALUES
-        ('$namafile','$deskripsi','$uname','$lokasi','$x','$y')";
-        
-if (mysql_query($sql))
-{
-move_uploaded_file($targetfile,"$uploadPath");
-
-echo json_encode(true);
-echo "ja";
-mysql_close($link);
-}
-
 else{
-  echo json_encode(false);
-  echo "ja";
+    echo json_encode(false);
+     echo "postkosong";
 }
-}
-
-else{
-  echo json_encode(false);
-  echo "ja";
-}
-
-
 ?>
 
 
