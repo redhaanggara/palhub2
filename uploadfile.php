@@ -20,37 +20,26 @@ $database = "dbpalhub";
 mysql_connect($server,$username,$password) or die("Koneksi gagal");
 mysql_select_db($database) or die("Database tidak bisa dibuka");
 $postdata = file_get_contents('php://input');
-if ($postdata == ""){
-    echo json_encode(false);
-    echo "postkosong";
-}
-else {
-    $request = json_decode($postdata);
-    $deskripsi = $request->deskripsi;
-    $uname = $request->uname;
-    $lokasi = $request->lokasi;
-    $x= $request->lat;
-    $y= $request->lng;
-    $target_dir = "xyz/";
-    $target_file = $target_dir . basename($_FILES["file"]["name"]);
-    $namafile = basename( $_FILES["file"]["name"]);
-    $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-
-      if(mysql_query("INSERT INTO timelines(photo1,deskripsi,pengirim,location,lat,lng) VALUES
-            ('$namafile','$deskripsi','$uname','$lokasi','$x','$y'")){
-                if(move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)){
+    if (empty($postdata) && empty($_FILES)){
+        echo json_encode(false);
+        echo "postkosong";
+    }
+    else {
+        $request = json_decode($postdata);
+        $deskripsi = $request->deskripsi;
+        $uname = $request->uname;
+        $lokasi = $request->lokasi;
+        $x= $request->lat;
+        $y= $request->lng;
+        
+            $target_dir = "xyz/";
+            $target_file = $target_dir . basename($_FILES["file"]["name"]);
+            $namafile = basename( $_FILES["file"]["name"]);
+            $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+            mysql_query("INSERT INTO timelines(photo1,deskripsi,pengirim,location,lat,lng) VALUES('$namafile','$deskripsi','$uname','$lokasi','$x','$y'")
+            move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
+            
                 echo json_encode(true);
                 echo "perfect";
-            }
-                else{
-                    echo json_encode(false);
-                    echo "gagalmovefile";
-                }
-            }
-     else{
-          echo json_encode(false);
-          echo "gagalinsert";
-     }
-}
-exit();
+    }
 ?>
