@@ -25,6 +25,7 @@ mysql_select_db($database) or die("Database tidak bisa dibuka");
 
 $postData = file_get_contents('php://input');
 if (isset($postdata)){
+echo "masuk";
 $request = json_decode($postdata);
 $deskripsi = $request->deskripsi;
 $uname = $request->uname;
