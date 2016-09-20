@@ -3,7 +3,7 @@ header('Access-Control-Allow-Origin: *');
 if(isset($_POST['btnsubmit'])){
 	$namafile= $_FILES['userfile']['name'];
 	$temporari= $_FILES['userfile']['tmp_name'];
-    $target_path = "xyz/";
+    $target_path = "xyz/$namafile";
  
     if(move_uploaded_file($temporari, $target_path)) {
      echo ($namafile);
